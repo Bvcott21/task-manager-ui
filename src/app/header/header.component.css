@@ -1,0 +1,22 @@
+a {
+  color: #ffffff;             /* White text for contrast on the primary toolbar */
+  text-decoration: none;
+  margin: 0 8px;
+  padding: 8px 12px;
+  border-radius: 4px;         /* Rounded corners */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+a:hover {
+  background-color: rgba(255, 255, 255, 0.2);  /* Subtle hover background */
+}
+
+.active-link {
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.3);  /* Distinct background for active link */
+  border-radius: 4px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
