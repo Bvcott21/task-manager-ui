@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { RegisterRequestDTO } from '../dto/register-request.dto';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,7 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  registerForm = {
+  registerForm: RegisterRequestDTO = {
     email: '',
     username: '',
     password: '',
