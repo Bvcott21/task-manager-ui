@@ -1,1 +1,16 @@
-<p>login works!</p>
+<mat-card>
+    <h2>Login</h2>
+    <form (ngSubmit)="onSubmit()" #form="ngForm">
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Email or Username</mat-label>
+            <input matInput name="emailOrUsername" [(ngModel)]="loginForm.emailOrUsername" required>
+        </mat-form-field>
+        
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" name="password" [(ngModel)]="loginForm.password" required>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Login</button>
+    </form>
+</mat-card>
