@@ -24,7 +24,7 @@ import { CommonModule } from '@angular/common';
 })
 export class LoginComponent {
   loginForm: LoginRequestDTO = {
-    emailOrUsername: '',
+    usernameOrEmail: '',
     password: ''
   }
 
