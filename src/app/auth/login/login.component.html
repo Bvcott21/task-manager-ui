@@ -1,17 +1,52 @@
-<mat-card>
-    <h2>Login</h2>
-    <form (ngSubmit)="onSubmit()" #form="ngForm">
-        
-        <mat-form-field appearance="fill">
-            <mat-label>Email or Username</mat-label>
-            <input matInput name="emailOrUsername" [(ngModel)]="loginForm.usernameOrEmail" required>
+<div class="auth-container">
+  <mat-card class="auth-card">
+    <mat-card-header class="auth-header">
+      <mat-card-title>Welcome Back</mat-card-title>
+      <mat-card-subtitle>Sign in to your account</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()" #form="ngForm" class="auth-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email or Username</mat-label>
+          <input matInput 
+                 name="usernameOrEmail" 
+                 [(ngModel)]="loginForm.usernameOrEmail" 
+                 required
+                 autocomplete="username">
+          <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
         
-        <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" name="password" [(ngModel)]="loginForm.password" required>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput 
+                 type="password" 
+                 name="password" 
+                 [(ngModel)]="loginForm.password" 
+                 required
+                 autocomplete="current-password">
+          <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">Login</button>
-    </form>
-    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
-</mat-card>
+        
+        <div class="error-message" *ngIf="errorMessage">
+          <mat-icon>error</mat-icon>
+          {{ errorMessage }}
+        </div>
+        
+        <button mat-raised-button 
+                color="primary" 
+                type="submit" 
+                class="full-width auth-button"
+                [disabled]="!form.valid">
+          Sign In
+        </button>
+      </form>
+    </mat-card-content>
+    
+    <mat-card-actions class="auth-actions">
+      <p>Don't have an account? 
+        <a mat-button routerLink="/register" color="primary">Sign up</a>
+      </p>
+    </mat-card-actions>
+  </mat-card>
+</div>

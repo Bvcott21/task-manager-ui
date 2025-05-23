@@ -1,28 +1,76 @@
-<mat-card>
-    <h2>Register</h2>
-    <form (ngSubmit)="onSubmit()" #form="ngForm">
-
-        <mat-form-field appearance="fill">
-            <mat-label>Email</mat-label>
-            <input matInput name="email" [(ngModel)]="registerForm.email" required>
+<div class="auth-container">
+  <mat-card class="auth-card">
+    <mat-card-header class="auth-header">
+      <mat-card-title>Create Account</mat-card-title>
+      <mat-card-subtitle>Join us today</mat-card-subtitle>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit()" #form="ngForm" class="auth-form">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input matInput 
+                 type="email"
+                 name="email" 
+                 [(ngModel)]="registerForm.email" 
+                 required
+                 email
+                 autocomplete="email">
+          <mat-icon matSuffix>email</mat-icon>
         </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Username</mat-label>
-            <input matInput name="username" [(ngModel)]="registerForm.username" required>
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput 
+                 name="username" 
+                 [(ngModel)]="registerForm.username" 
+                 required
+                 autocomplete="username">
+          <mat-icon matSuffix>person</mat-icon>
         </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput type="password" name="password" [(ngModel)]="registerForm.password" required>
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput 
+                 type="password" 
+                 name="password" 
+                 [(ngModel)]="registerForm.password" 
+                 required
+                 minlength="8"
+                 autocomplete="new-password">
+          <mat-icon matSuffix>lock</mat-icon>
         </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Confirm Password</mat-label>
-            <input matInput type="password" name="confirmPassword" [(ngModel)]="registerForm.confirmPassword" required>
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Confirm Password</mat-label>
+          <input matInput 
+                 type="password" 
+                 name="confirmPassword" 
+                 [(ngModel)]="registerForm.confirmPassword" 
+                 required
+                 autocomplete="new-password">
+          <mat-icon matSuffix>lock_outline</mat-icon>
         </mat-form-field>
-
-        <button mat-raised-button color="primary" type="submit">Register</button>
-        <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
-    </form>
-</mat-card>
+        
+        <div class="error-message" *ngIf="errorMessage">
+          <mat-icon>error</mat-icon>
+          {{ errorMessage }}
+        </div>
+        
+        <button mat-raised-button 
+                color="primary" 
+                type="submit" 
+                class="full-width auth-button"
+                [disabled]="!form.valid">
+          Create Account
+        </button>
+      </form>
+    </mat-card-content>
+    
+    <mat-card-actions class="auth-actions">
+      <p>Already have an account? 
+        <a mat-button routerLink="/login" color="primary">Sign in</a>
+      </p>
+    </mat-card-actions>
+  </mat-card>
+</div>
