@@ -46,7 +46,7 @@ export class RegisterComponent {
       },
       error: (error) => {
         console.error("Registration failed", error);
-        this.errorMessage = "Invalid inputs, please try again.";
+        this.errorMessage = error.error.message;
       }
     })
   }
