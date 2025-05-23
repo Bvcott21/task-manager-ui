@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { RegisterRequestDTO } from '../dto/register-request.dto';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -32,12 +33,13 @@ export class RegisterComponent {
 
   errorMessage: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
   onSubmit() {
     console.log("Register submitted", this.registerForm);
     this.authService.register(this.registerForm).subscribe({
       next: (response) => {
         console.log("Registration successful", response);
+        this.router.navigate(['/dashboard']);
       },
       error: (error) => {
         console.error("Registration failed", error);

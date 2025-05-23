@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { LoginRequestDTO } from '../dto/login-request.dto';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -30,7 +31,7 @@ export class LoginComponent {
 
   errorMessage: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   onSubmit(): void {
     console.log("Login submitted", this.loginForm);
@@ -38,6 +39,7 @@ export class LoginComponent {
       // Process the successful login response e. g. save token, navigate, etc.
       next: (response) => {
         console.log("Login successful", response);
+        this.router.navigate(['/dashboard']);
       },
       error: (error) => {
         console.error("Login failed", error);
