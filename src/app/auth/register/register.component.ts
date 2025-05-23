@@ -5,12 +5,15 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { RegisterRequestDTO } from '../dto/register-request.dto';
+import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
     FormsModule,
+    CommonModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
@@ -27,8 +30,19 @@ export class RegisterComponent {
     confirmPassword: ''
   }
 
+  errorMessage: string = '';
+
+  constructor(private authService: AuthService) {}
   onSubmit() {
     console.log("Register submitted", this.registerForm);
-    // real logic goes here
+    this.authService.register(this.registerForm).subscribe({
+      next: (response) => {
+        console.log("Registration successful", response);
+      },
+      error: (error) => {
+        console.error("Registration failed", error);
+        this.errorMessage = "Invalid inputs, please try again.";
+      }
+    })
   }
 }
